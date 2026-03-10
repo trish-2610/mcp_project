@@ -1,0 +1,11 @@
+langchain
+langgraph
+langchain-core
+langchain-community
+langchain-groq
+langchain-mcp-adapters
+langgraph-supervisor
+mcp
+python-dotenv
+requests
+feedparser
