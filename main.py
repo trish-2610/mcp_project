@@ -1,35 +1,62 @@
 import asyncio
+from fastapi import FastAPI
+from pydantic import BaseModel
 from supervisor.supervisor_agent import create_system
 
 
-async def main():
+app = FastAPI(title="Financial Intelligence API")
 
+supervisor = None
+
+class QueryRequest(BaseModel):
+    query: str
+
+
+@app.on_event("startup")
+async def startup_event():
+    global supervisor
     supervisor = await create_system()
 
-    query = input("Ask a financial intelligence question: ")
+@app.post("/query")
+async def ask_query(request: QueryRequest):
 
     final_message = ""
 
-    async for chunk in supervisor.astream(
-        {"messages": [{"role": "user", "content": query}]}
-    ):
+    try:
 
-        # Only capture the final supervisor response
-        if "supervisor" in chunk:
+        async for chunk in supervisor.astream(
+            {"messages": [{"role": "user", "content": request.query}]}
+        ):
 
-            data = chunk["supervisor"]
+            if "supervisor" in chunk:
 
-            if data and "messages" in data:
-                for m in data["messages"]:
+                data = chunk["supervisor"]
 
-                    if hasattr(m, "content") and m.content:
-                        final_message = m.content
+                if data and "messages" in data:
+                    for m in data["messages"]:
 
-    print("\n====================================")
-    print("FINANCIAL INTELLIGENCE REPORT")
-    print("====================================")
-    print(final_message)
+                        if hasattr(m, "content") and m.content:
+                            final_message = m.content
 
+    except Exception as e:
 
-if __name__ == "__main__":
-    asyncio.run(main())
+        final_message = f"""
+System Error Encountered
+
+Reason:
+{str(e)}
+
+Temporary issue occurred while processing the request.
+
+Possible causes:
+• API rate limit
+• tool execution failure
+• external data provider error
+
+Please try again.
+"""
+
+    return {
+        "query": request.query,
+        "report": final_message
+    }
