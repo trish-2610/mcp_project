@@ -1,4 +1,4 @@
-# MCP-Based Multi-Agent Financial Intelligence System
+# Multi-Agent MCP Powered Financial Intelligence System
 
 A production-oriented **Multi-Agent Financial Intelligence System** built using LangChain, LangGraph, FastMCP, and FastAPI. The system follows a **Supervisor-Agent architecture** over the **Model Context Protocol (MCP)**, where a central supervisor orchestrates three specialized AI agents — each connected to its own MCP server and backed by live external data sources.
 
