@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from supervisor.supervisor_agent import create_system
 
-app = FastAPI(title="MCP_BAsed Multi-Agent Financel Intelligence System", version="1.0")
+app = FastAPI(title="MCP-Based Multi-Agent Financel Intelligence System", version="1.0")
 
 supervisor = None
 
