@@ -1,3 +1,4 @@
+## corporate_agent
 from langchain.agents import create_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_groq import ChatGroq
@@ -18,12 +19,13 @@ async def create_corporate_agent():
         }
     )
 
-    tools = await client.get_tools() 
+    tools = await client.get_tools() ## initializing tools 
 
-    corporate_agent = create_agent(
+    corporate_agent = create_agent( ## create corporate agent 
         model = get_model(),
         tools = tools,
-        system_prompt="""
+        system_prompt=
+        """
         You are a corporate intelligence analyst.
 
         Your tasks:
@@ -45,7 +47,7 @@ async def create_corporate_agent():
         (short explanation)
 
         Competitive Impact:
-        (How this affects the company’s market position)
+        (How this affects the company's market position)
 
         Investment Insight:
         (Bullish / Neutral / Bearish)
