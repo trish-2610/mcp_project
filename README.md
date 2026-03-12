@@ -184,22 +184,25 @@ mcp_project/
 ├── agents/                          ## Specialized LangChain agents
 │   ├── news_agent.py                ## Financial news analyst agent
 │   ├── economic_agent.py            ## Macroeconomic indicators agent
-│   └── corporate_agent.py          ## Competitor and industry intelligence agent
+│   └── corporate_agent.py           ## Competitor and industry intelligence agent
 │
 ├── mcp_servers/                     ## FastMCP servers exposing tools to agents
 │   ├── news_server.py               ## Tools: get_market_news, get_company_news
 │   ├── economic_server.py           ## Tools: get_inflation, get_interest_rate, get_unemployment
-│   └── corporate_server.py         ## Tools: get_competitors, industry_trend
+│   └── corporate_server.py          ## Tools: get_competitors, industry_trend
 │
 ├── supervisor/
 │   └── supervisor_agent.py         ## LangGraph supervisor — orchestrates all agents
-│
+|
+├── ui/                             ## Front-end static files
+│   ├── index.html                  ## Main query interface
+│   └── style.css                   ## Dark finance-themed stylesheet
+    └── assets
+|
 ├── main.py                          ## FastAPI entry point — /query POST endpoint
-├── config.py                        ## LLM initialization (Groq / llama-3.1-8b-instant)
-├── pyproject.toml                   ## Project metadata and build configuration
+├── config.py                        ## LLM initialization (Groq / llama-3.1-8b-instant)n
 ├── requirements.txt                 ## Python dependencies
-├── uv.lock                          ## Locked dependency versions
-└── .python-version                  ## Python version pin (3.12)
+)
 ```
 
 ---
