@@ -38,12 +38,10 @@ def get_interest_rate():
     """Get latest US interest rate"""
     return fetch_fred("FEDFUNDS")
 
-
 @mcp.tool()
 def get_unemployment():
     """Get latest unemployment rate"""
     return fetch_fred("UNRATE")
-
 
 if __name__ == "__main__":
     print("Economic MCP server started...")
