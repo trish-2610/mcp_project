@@ -202,6 +202,8 @@ mcp_project/
 ├── main.py                          ## FastAPI entry point — /query POST endpoint
 ├── config.py                        ## LLM initialization (Groq / llama-3.1-8b-instant)
 ├── requirements.txt                 ## Python dependencies
+├── README.md
+├── .gitignore  
 ```
 
 ---
