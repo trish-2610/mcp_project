@@ -1,3 +1,4 @@
+## economic agent 
 import os 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
@@ -17,9 +18,9 @@ async def create_economic_agent():
         }
     )
 
-    tools = await client.get_tools()
+    tools = await client.get_tools() ## initializing tools
 
-    economic_agent = create_agent(
+    economic_agent = create_agent( ## create economic agent
         model = get_model(),
         tools = tools,
         system_prompt="""
